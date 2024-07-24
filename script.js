@@ -1,14 +1,4 @@
-const inputs = document.querySelectorAll('.controls input');
-
-    function handleUpdate() {
-      const suffix = this.dataset.sizing || '';
-      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
-    }
-
-    inputs.forEach(input => input.addEventListener('change', handleUpdate));
-    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
-
-
+// Select elements
 const player = document.querySelector('.player');
 const video = player.querySelector('.viewer');
 const progress = player.querySelector('.progress');
@@ -17,6 +7,7 @@ const toggle = player.querySelector('.toggle');
 const ranges = player.querySelectorAll('.player__slider');
 const skipButtons = player.querySelectorAll('[data-skip]');
 
+// Functions to handle video playback
 function togglePlay() {
   const method = video.paused ? 'play' : 'pause';
   video[method]();
@@ -44,6 +35,8 @@ function scrub(e) {
   const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
   video.currentTime = scrubTime;
 }
+
+// Event listeners
 video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
